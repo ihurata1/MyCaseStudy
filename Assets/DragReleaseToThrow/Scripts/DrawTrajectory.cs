@@ -14,8 +14,8 @@ namespace Simsoft.CaseStudyDependencyInversion.Unity
         private int _lineSegmentCount = 20;
 
         [SerializeField]
-        [Range(20, 50)]
-        private float drawPowerRatio = 30f; 
+        [Range(30, 70)]
+        private float drawPowerRatio = 50f; 
 
         private List<Vector3> _linePoints = new List<Vector3>();
 
