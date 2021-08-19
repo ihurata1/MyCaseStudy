@@ -12,8 +12,8 @@
 
 		protected virtual void Start()
 		{
-			var leaderboard = new LeaderboardController();
-			leaderboard.GetItems()
+			var leaderboard = new LeaderboardController(leaderBoard: new LeaderboardSorterByName()); // veya: new LeaderboardSorterByScore();
+            leaderboard.GetItems()
 				.ToList()
 				.ForEach(i => Debug.Log(this.PrintLeaderboardItem(i)));
 		}

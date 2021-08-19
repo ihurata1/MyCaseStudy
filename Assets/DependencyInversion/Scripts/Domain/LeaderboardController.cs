@@ -1,21 +1,28 @@
 ﻿namespace CaseStudyDependencyInversion.Unity.Domain
 {
 	using CaseStudyDependencyInversion.Unity.Domain.Model;
-	using System.Collections.Generic;
+    using Simsoft.CaseStudyDependencyInversion.Unity;
+    using System.Collections.Generic;
 	using UnityEngine;
 
 	public class LeaderboardController
 	{
+		private ILeaderBoard leaderBoard;
+
+		public LeaderboardController(ILeaderBoard leaderBoard){
+			this.leaderBoard = leaderBoard;
+		}
+
 		public IEnumerable<LeaderboardItem> GetItems()
 		{
 			var leaderboardProvider = new FakeLeaderboardProvider();
 			var sortType = PlayerPrefs.GetInt("SortType", 0);
 			if (sortType == 0)
 			{
-				return new LeaderboardSorterByScore().Sort(leaderboardProvider);
+				return leaderBoard.Sort(leaderboardProvider);
 			}
 
-			return new LeaderboardSorterByName().Sort(leaderboardProvider);
+			return leaderBoard.Sort(leaderboardProvider);
 		}
 	}
 }
